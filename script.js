@@ -1,12 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -29,7 +31,36 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+///////////////////////////////////////////////////////////////////
+//Button Scrolling
 
+btnScrollTo.addEventListener('click', function () {
+  //   const slcoords = section1.getBoundingClientRect();
+
+  //   window.scrollTo({
+  //     left: slcoords.left + window.pageXOffset,
+  //     top: slcoords.top + window.pageYOffset,
+  //     behavior: 'smooth',
+  //   });
+
+  //Smooth Scrolling Modern
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+////////////////////////////////////////////////////////////////
+// Page Navigation
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault(); //always do this!!!
+
+  //Matching Strategy, ignores clicks outside of links ie. parent element
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+/////////////////////////////////////////////////////////////////
 //Cookie Message
 const header = document.querySelector('.header');
 const message = document.createElement('div');
@@ -51,31 +82,3 @@ message.style.height =
 
 // change CSS root
 //document.documentElement.style.setProperty('insert root variable', 'select color')
-
-//Smooth Scrolling
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function () {
-  //   const slcoords = section1.getBoundingClientRect();
-
-  //   window.scrollTo({
-  //     left: slcoords.left + window.pageXOffset,
-  //     top: slcoords.top + window.pageYOffset,
-  //     behavior: 'smooth',
-  //   });
-
-  //Smooth Scrolling Modern
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
-
-//
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
-
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-});
