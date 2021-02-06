@@ -162,6 +162,7 @@ allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
 /////////////////////////////////////////////////////////////////
 //Cookie Message
 const head = document.querySelector('.header');
