@@ -199,7 +199,7 @@ const sliders = function () {
   const dotContainer = document.querySelector('.dots');
 
   let curSlide = 0;
-  const maxSlide = slides.length;
+  const maxSlide = slides.length - 1;
 
   const createDots = function () {
     slides.forEach(function (_, i) {
